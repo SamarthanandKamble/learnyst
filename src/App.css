@@ -96,7 +96,6 @@ label:last-of-type .input-fields {
 }
 
 .todo-container {
-  border: 1px dotted red;
   width: 745px;
   position: relative;
 }
@@ -154,40 +153,49 @@ label:last-of-type .input-fields {
 .todo-items-container {
   position: absolute;
   display: flex;
+  flex-direction: column;
   align-items: center;
   width: 680px;
-  height: 56px;
-  top: 255px;
+  top: 251px;
   left: 40px;
   border-radius: 4px;
-  border: 1px solid #e4e9f2;
+  color: #313131;
+  padding-inline-start: 0;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+.todo-list-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 680px;
+  height: 56px;
   color: #313131;
 }
 
 .checkbox-cnt {
-  position: relative;
-  display: flex;
-  align-items: center;
-  height: 30px;
-  width: 30px;
+  position: absolute;
   left: 8px;
-  padding: 10px;
-  border: 1px dotted greenyellow;
-  margin-right: 4px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 input[type="checkbox"] {
   height: 20px;
-  width: 20px; /* Set the height of the checkbox */
-  padding: 0; /* Remove padding */
-  margin: 0; /* Add border-radius for rounded corners */
-  appearance: none; /* Remove default styles */
+  width: 20px;
+  padding: 0;
+  margin: 0;
+  appearance: none;
   outline: none;
 }
 
-/* Style the custom appearance of the checkbox */
 input[type="checkbox"]::before {
-  content: ""; /* Add pseudo-element content */
+  content: "";
   display: block;
   width: 100%;
   height: 100%;
@@ -196,30 +204,65 @@ input[type="checkbox"]::before {
   border-radius: 4px;
 }
 
-/* Adjust appearance of the custom checkbox when checked */
 input[type="checkbox"]:checked::before {
   background-image: url("/Checkmark.svg");
   background-repeat: no-repeat;
   background-color: #002964;
   background-size: 50%;
   background-position: center;
+  border: none;
 }
 
 .todo-content {
-  display: flex;
-  align-items: center;
-  position: relative;
-  width: 451px;
-  height: 48px;
-  left: 4px;
-  gap: 0px;
-  opacity: 0px;
+  position: absolute;
+  left: 52px;
+  font-family: Poppins;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 48px;
+  color: #313131;
+}
+.todo-content-selected {
+  position: absolute;
+  left: 52px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 48px;
+  color: #b6b6b6;
+}
+
+.todo-content-selected::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  border-bottom: 1px solid #b6b6b6; /* Adjust line properties as needed */
+  transform: translateY(80%);
 }
 
 .todo-dropdown {
-  position: relative;
-  display: flex;
-  align-items: center;
-  left: 137px;
+  position: absolute;
+  left: 640px;
   cursor: pointer;
+}
+
+.todo-description {
+  position: relative;
+  height: 46px;
+  left: 52px;
+  height: 40px;
+  width: fit-content;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 48px;
+  top: -10px;
+}
+
+.li-container {
+  border-radius: 4px;
+  border: 1px solid #e4e9f2;
+  height: auto;
+  margin-bottom: 8px;
+  list-style: none;
 }

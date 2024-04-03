@@ -4,7 +4,9 @@ export const todos = createSlice({
   name: "todos",
   initialState: {
     todoList: [],
-    todoSection :"All"
+    todoSection: "All",
+    doneTodoList: [],
+    incompleteTodoList: [],
   },
   reducers: {
     addNewTodo: (state, action) => {
@@ -19,12 +21,26 @@ export const todos = createSlice({
     doneTodo: (state, action) => {
       state.todoList = action.payload;
     },
-    updateTodoSection:(state,action)=>{
+    updateTodoSection: (state, action) => {
       state.todoSection = action.payload;
-    }
+    },
+    addNewDoneTodo: (state, action) => {
+      state.doneTodoList = action.payload;
+    },
+    addIncompleteTodoList: (state, action) => {
+      state.incompleteTodoList = action.payload;
+    },
   },
 });
 
-export const { addNewTodo, deleteTodo, doneTodo, updateTodo,updateTodoSection } = todos.actions;
+export const {
+  addNewTodo,
+  deleteTodo,
+  doneTodo,
+  updateTodo,
+  updateTodoSection,
+  addIncompleteTodoList,
+  addNewDoneTodo,
+} = todos.actions;
 
 export default todos.reducer;

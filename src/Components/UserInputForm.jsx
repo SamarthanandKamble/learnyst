@@ -17,6 +17,7 @@ const UserInputForm = () => {
         title,
         description,
         isComplete: false,
+        isDropdownOpen: false,
       };
 
       dispatch(addNewTodo([...todoList, newTodo]));
