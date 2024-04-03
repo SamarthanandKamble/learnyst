@@ -5,8 +5,8 @@ export const todos = createSlice({
   initialState: {
     todoList: [],
     todoSection: "All",
-    doneTodoList: [],
-    incompleteTodoList: [],
+    // doneTodoList: [],
+    // inCompleteTodoList: [],
   },
   reducers: {
     addNewTodo: (state, action) => {
@@ -16,7 +16,12 @@ export const todos = createSlice({
       state.todoList = action.payload;
     },
     updateTodo: (state, action) => {
-      state.todoList = action.payload;
+      const updatedTodoList = action.payload;
+      state.todoList = updatedTodoList;
+      state.doneTodoList = updatedTodoList.filter((todo) => todo.isComplete);
+      state.inCompleteTodoList = updatedTodoList.filter(
+        (todo) => !todo.isComplete
+      );
     },
     doneTodo: (state, action) => {
       state.todoList = action.payload;
@@ -24,12 +29,12 @@ export const todos = createSlice({
     updateTodoSection: (state, action) => {
       state.todoSection = action.payload;
     },
-    addNewDoneTodo: (state, action) => {
-      state.doneTodoList = action.payload;
-    },
-    addIncompleteTodoList: (state, action) => {
-      state.incompleteTodoList = action.payload;
-    },
+    // addNewDoneTodo: (state, action) => {
+    //   state.doneTodoList = action.payload;
+    // },
+    // addIncompleteTodoList: (state, action) => {
+    //   state.inCompleteTodoList = action.payload;
+    // },
   },
 });
 
@@ -39,8 +44,8 @@ export const {
   doneTodo,
   updateTodo,
   updateTodoSection,
-  addIncompleteTodoList,
-  addNewDoneTodo,
+  // addIncompleteTodoList,
+  // addNewDoneTodo,
 } = todos.actions;
 
 export default todos.reducer;

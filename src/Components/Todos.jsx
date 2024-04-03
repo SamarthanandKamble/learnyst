@@ -1,21 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTodo } from "../Redux/todos";
 
-const Todo = () => {
-  const todos = useSelector((state) => state.todos?.todoList);
+const Todos = ({ todos }) => {
   const dispatch = useDispatch();
 
   const handleDropDown = (id) => {
-    let newArr = todos.map((todo) =>
+    let newArr = todos?.map((todo) =>
       todo?.id === id ? { ...todo, isDropdownOpen: !todo.isDropdownOpen } : todo
     );
     dispatch(updateTodo(newArr));
   };
 
-  const handleSelectedTodo = (id) => {
+  const handleSelectedTodo = (e, todo) => {
+    const { id } = todo;
+    const { checked } = e.target;
     let newArr = todos.map((todo) =>
-      todo?.id === id ? { ...todo, isComplete: !todo.isComplete } : todo
+      todo?.id === id ? { ...todo, isComplete: checked } : todo
     );
     dispatch(updateTodo(newArr));
   };
@@ -23,7 +24,7 @@ const Todo = () => {
   return (
     <>
       <ul className="todo-items-container">
-        {todos.map((todo) => {
+        {todos?.map((todo) => {
           return (
             <li key={todo?.id} className="li-container">
               <div className="todo-list-container">
@@ -31,7 +32,8 @@ const Todo = () => {
                   <input
                     type="checkbox"
                     id="myCheckBox"
-                    onChange={() => handleSelectedTodo(todo?.id)}
+                    checked={todo.isComplete}
+                    onChange={(e) => handleSelectedTodo(e, todo)}
                   />
                 </div>
                 <div
@@ -61,4 +63,4 @@ const Todo = () => {
   );
 };
 
-export default Todo;
+export default Todos;

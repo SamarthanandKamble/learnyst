@@ -1,8 +1,8 @@
 import React from "react";
-import TodoSection from "./TodoSection";
-import Todo from "./Todo";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTodoSection } from "../Redux/todos";
+import AllTodo from "./Todos";
+import TodoSection from "./TodoSection";
 
 const todoSectionTitle = ["All", "Done", "To Do"];
 
@@ -15,7 +15,6 @@ const TodoContainer = () => {
       <div className="todo-section-title-container">
         {todoSectionTitle.map((title) => (
           <span
-            
             key={title}
             className={
               selectedTodoSection === title
@@ -28,7 +27,7 @@ const TodoContainer = () => {
           </span>
         ))}
       </div>
-      <Todo />
+      <TodoSection title={selectedTodoSection} />
     </div>
   );
 };

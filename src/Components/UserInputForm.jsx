@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { addNewTodo } from "../Redux/todos";
 import InputTitle from "./InputTitle";
+import { addNewTodo } from "../Redux/todos";
 
 const UserInputForm = () => {
   const todoList = useSelector((state) => state.todos?.todoList);
