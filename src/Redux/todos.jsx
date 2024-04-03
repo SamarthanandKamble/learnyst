@@ -5,12 +5,20 @@ export const todos = createSlice({
   initialState: {
     todoList: [],
     todoSection: "All",
-    // doneTodoList: [],
-    // inCompleteTodoList: [],
+    doneTodoList: [],
+    selectedTodo: null,
   },
   reducers: {
     addNewTodo: (state, action) => {
       state.todoList = action.payload;
+      localStorage.setItem("todoList", JSON.stringify(state.todoList));
+      state.inCompleteTodoList = action.payload.filter(
+        (todo) => !todo.isComplete
+      );
+      localStorage.setItem(
+        "inCompleteTodoList",
+        JSON.stringify(state.inCompleteTodoList)
+      );
     },
     deleteTodo: (state, action) => {
       state.todoList = action.payload;
@@ -18,9 +26,12 @@ export const todos = createSlice({
     updateTodo: (state, action) => {
       const updatedTodoList = action.payload;
       state.todoList = updatedTodoList;
-      state.doneTodoList = updatedTodoList.filter((todo) => todo.isComplete);
       state.inCompleteTodoList = updatedTodoList.filter(
         (todo) => !todo.isComplete
+      );
+      localStorage.setItem(
+        "inCompleteTodoList",
+        JSON.stringify(state.inCompleteTodoList)
       );
     },
     doneTodo: (state, action) => {
@@ -28,13 +39,16 @@ export const todos = createSlice({
     },
     updateTodoSection: (state, action) => {
       state.todoSection = action.payload;
+      localStorage.setItem("todoSection", JSON.stringify(state.todoSection));
     },
-    // addNewDoneTodo: (state, action) => {
-    //   state.doneTodoList = action.payload;
-    // },
-    // addIncompleteTodoList: (state, action) => {
-    //   state.inCompleteTodoList = action.payload;
-    // },
+    updateDoneTodoList: (state) => {
+      state.doneTodoList = state.todoList.filter((todo) => todo.isComplete);
+      localStorage.setItem("todoList", JSON.stringify(state.todoList));
+      localStorage.setItem("doneTodoList", JSON.stringify(state.doneTodoList));
+    },
+    addSelectedTodo: (state, action) => {
+      state.selectedTodo = action.payload;
+    },
   },
 });
 
@@ -44,8 +58,8 @@ export const {
   doneTodo,
   updateTodo,
   updateTodoSection,
-  // addIncompleteTodoList,
-  // addNewDoneTodo,
+  addSelectedTodo,
+  updateDoneTodoList,
 } = todos.actions;
 
 export default todos.reducer;

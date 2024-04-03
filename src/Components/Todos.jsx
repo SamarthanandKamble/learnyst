@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTodo } from "../Redux/todos";
+import { addSelectedTodo, updateTodo } from "../Redux/todos";
 
 const Todos = ({ todos }) => {
   const dispatch = useDispatch();
@@ -15,11 +15,13 @@ const Todos = ({ todos }) => {
   const handleSelectedTodo = (e, todo) => {
     const { id } = todo;
     const { checked } = e.target;
-    let newArr = todos.map((todo) =>
-      todo?.id === id ? { ...todo, isComplete: checked } : todo
-    );
-    dispatch(updateTodo(newArr));
+    // let newArr = todos.map((todo) =>
+    //   todo?.id === id ? { ...todo, isComplete: checked } : todo
+    // );
+    // dispatch(updateTodo([...todos, todo]));
+    dispatch(addSelectedTodo(todo));
   };
+
 
   return (
     <>

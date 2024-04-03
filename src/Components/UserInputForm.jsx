@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InputTitle from "./InputTitle";
-import { addNewTodo } from "../Redux/todos";
+import { addNewTodo, updateDoneTodoList, updateTodo } from "../Redux/todos";
 
 const UserInputForm = () => {
   const todoList = useSelector((state) => state.todos?.todoList);
+  const selectedTodo = useSelector((state) => state.todos?.selectedTodo);
   const dispatch = useDispatch();
   const [title, setTitle] = useState("");
+  const [formBtn, setFormBtn] = useState("Add Task");
   const [description, setDescription] = useState("");
 
   const handleFormSubmit = (e) => {
@@ -19,13 +21,35 @@ const UserInputForm = () => {
         isComplete: false,
         isDropdownOpen: false,
       };
-
-      dispatch(addNewTodo([...todoList, newTodo]));
+      if (formBtn === "Add Task") {
+        dispatch(addNewTodo([...todoList, newTodo]));
+      } else {
+        let newArr = todoList.map((todo) =>
+          todo.id === selectedTodo.id
+            ? {
+                ...todo,
+                title,
+                description,
+                isComplete: true,
+              }
+            : todo
+        );
+        dispatch(updateTodo(newArr));
+        dispatch(updateDoneTodoList());
+        setFormBtn("Add Task");
+      }
       setTitle("");
       setDescription("");
     }
   };
 
+  useEffect(() => {
+    if (selectedTodo) {
+      setTitle(selectedTodo.title);
+      setDescription(selectedTodo.description);
+      setFormBtn("Done");
+    }
+  }, [selectedTodo]);
   return (
     <div className="user-input-form-container">
       <span className="form-header">Add task</span>
@@ -60,7 +84,7 @@ const UserInputForm = () => {
         </label>
 
         <button className="add-task-btn" type="submit">
-          Add Task
+          {formBtn}
         </button>
       </form>
     </div>

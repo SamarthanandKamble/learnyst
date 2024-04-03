@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { updateTodoSection } from "../Redux/todos";
+import {
+  addNewTodo,
+  updateDoneTodoList,
+  updateTodo,
+  updateTodoSection,
+} from "../Redux/todos";
 import AllTodo from "./Todos";
 import TodoSection from "./TodoSection";
 
@@ -9,6 +14,30 @@ const todoSectionTitle = ["All", "Done", "To Do"];
 const TodoContainer = () => {
   const selectedTodoSection = useSelector((state) => state.todos?.todoSection);
   const dispatch = useDispatch();
+  useEffect(() => {
+    const todoList = JSON.parse(localStorage.getItem("todoList"));
+    const inCompleteTodoList = JSON.parse(
+      localStorage.getItem("inCompleteTodoList")
+    );
+    const doneTodoList = JSON.parse(localStorage.getItem("doneTodoList"));
+    const todoSection = JSON.parse(localStorage.getItem("todoSection"));
+
+    console.log(
+      "todoList",
+      todoList,
+      "incompletelist",
+      inCompleteTodoList,
+      "doneTodoList",
+      doneTodoList
+    );
+
+    if (todoList || inCompleteTodoList || doneTodoList || todoSection) {
+      dispatch(updateTodo(todoList));
+      dispatch(updateDoneTodoList());
+      dispatch(updateTodoSection("All"));
+      console.log("called dispatch");
+    }
+  }, [dispatch]);
   return (
     <div className="todo-container">
       <div className="todo-container-header">To do tasks</div>
