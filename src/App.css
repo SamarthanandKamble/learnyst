@@ -270,12 +270,11 @@ input[type="checkbox"]:checked::before {
 /* Add this CSS to your existing stylesheet or create a new one */
 
 /* Media query for max width of 320px (mobile view) */
-@media (max-width: 320px) {
+@media (max-width: 570px) {
   .home {
     position: relative;
     display: block;
     min-width: fit-content;
-    border: 2px dotted brown;
   }
   .user-input-form-container {
     width: 100%;
@@ -305,18 +304,25 @@ input[type="checkbox"]:checked::before {
     top: 17rem;
   }
 
+  .add-task-btn {
+    height: 60px;
+    font-family: "Poppins", sans-serif;
+  }
   .input-fields {
     top: 10rem;
   }
   .input {
+    font-family: "Poppins", sans-serif;
     font-size: 25px;
+    text-align: center;
+    width: auto;
   }
   label:last-of-type .input-fields {
     top: 20rem;
   }
 
   .input-fields {
-    margin: 10px;
+    text-align: center;
     width: 90%;
   }
   label:last-of-type .input-fields {
@@ -330,5 +336,116 @@ input[type="checkbox"]:checked::before {
     text-align: center;
     font-size: 35px;
     width: 100%;
+  }
+
+  .todo-container-header {
+    top: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+  }
+
+  .todo-section-title-container {
+    top: 8rem;
+    height: 60px;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .todo-section-color,
+  .todo-section-color-selected {
+    font-size: 25px;
+  }
+  .todo-description {
+    font-size: 20px;
+  }
+
+  #myCheckBox {
+    height: 25px;
+    width: 25px;
+  }
+  .todo-list-container {
+    height: 90px;
+  }
+
+  .todo-items-container {
+    top: 14rem;
+  }
+
+  .todo-content,
+  .todo-content-selected {
+    font-size: 25px;
+  }
+
+  .dropdown-down {
+    height: 10px;
+  }
+}
+
+@media (min-width: 571px) and (max-width: 891px) {
+  .home {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    min-width: fit-content;
+    height: 510px;
+  }
+  .user-input-form-container {
+    width: -webkit-fill-available;
+    height: -webkit-fill-available;
+  }
+
+  .form-header {
+    top: 35px;
+  }
+  .input-fields {
+    top: 145px;
+  }
+
+  label:last-of-type .input-fields {
+    top: 257px;
+  }
+  .input-task-label {
+    top: 111px;
+  }
+  label:last-of-type .input-task-label {
+    top: 222px;
+  }
+
+  .input {
+    margin: 12px 5px;
+  }
+
+  .add-task-btn {
+    top: 428px;
+  }
+
+  .todo-container-header {
+    top: 60px;
+  }
+  .todo-section-title-container {
+    top: 120px;
+  }
+  .todo-items-container {
+    top: 191px;
+  }
+}
+
+@media (min-width: 892px) and (max-width: 1250px) {
+  .input-fields {
+    width: 320px;
+  }
+  .input {
+    width: auto;
+  }
+  label:last-of-type .input-fields {
+    width: 320px;
+  }
+
+  .add-task-btn {
+    width: 320px;
   }
 }
