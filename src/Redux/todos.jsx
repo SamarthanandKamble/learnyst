@@ -27,6 +27,14 @@ export const todos = createSlice({
         isDropdownOpen: false,
       },
       {
+        id: 4,
+        title: "Research new technology or tool to improve workflow efficiency",
+        description: "test description",
+        isComplete: false,
+        isDropdownOpen: false,
+      },
+
+      {
         id: 5,
         title: "Learn more things to upskill.",
         description: "test description",
@@ -45,7 +53,7 @@ export const todos = createSlice({
         id: 7,
         title: "Update project documentation with latest changes and progress.",
         description: "test description",
-        isComplete: false,
+        isComplete: true,
         isDropdownOpen: false,
       },
     ],

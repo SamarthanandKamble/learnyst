@@ -60,6 +60,14 @@ const UserInputForm = () => {
     setDescription("");
   };
 
+  const handleDeleteTodo = () => {
+    let updatedTodoList = todoList.filter(
+      (todo) => todo.id !== selectedTodo.id
+    );
+    console.log("updated todo:", updatedTodoList);
+    dispatch(updateTodo(updatedTodoList));
+  };
+
   useEffect(() => {
     if (selectedTodo) {
       setTitle(selectedTodo.title);
@@ -101,12 +109,17 @@ const UserInputForm = () => {
         </label>
 
         {selectedTodo && (
-          <button
-            className="cancel-uncheck-todo-btn"
-            onClick={handleUncheckCancelTodo}
-          >
-            Cancel / UnCheck
-          </button>
+          <div className="edit-todo-btn-cnt">
+            <button
+              className="cancel-uncheck-todo-btn"
+              onClick={handleUncheckCancelTodo}
+            >
+              Cancel / UnCheck
+            </button>
+            <button className="delete-todo-btn" onClick={handleDeleteTodo}>
+              Delete Todo
+            </button>
+          </div>
         )}
         <button className="add-task-btn" type="submit">
           {formBtn}

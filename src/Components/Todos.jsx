@@ -19,7 +19,6 @@ const Todos = ({ todos }) => {
 
   if (todos?.length > 0 && todoList?.length > 0) {
     localStorage.setItem("todoList", JSON.stringify(todoList));
-
   } else {
     return;
   }
