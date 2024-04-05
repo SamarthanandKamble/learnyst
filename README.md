@@ -18,10 +18,10 @@ This is a task assignment application where users can create, edit, and delete t
 
 ## Screenshots
 - **Required Preview**.
-![Task Assignment Application Required Preview](/RequiredPrev.png)
+![Task Assignment Application Required Preview](/public/RequiredPrev.png)
 
 - **Final Preview**.
-![Task Assignment Application Final Preview](/FinalPrev.png)
+![Task Assignment Application Final Preview](/public/FinalPrev.png)
 
 ---
 
