@@ -17,9 +17,10 @@ This is a task assignment application where users can create, edit, and delete t
 - **Mobile Responsiveness**: The application is designed to be responsive and accessible on various devices and screen sizes.
 
 ## Screenshots
-
+- **Required Preview**.
 ![Task Assignment Application Required Preview](/RequiredPrev.png)
 
+- **Final Preview**.
 ![Task Assignment Application Final Preview](/FinalPrev.png)
 
 ---
