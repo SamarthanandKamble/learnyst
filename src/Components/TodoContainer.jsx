@@ -21,11 +21,9 @@ class TodoContainer extends Component {
     const todoSection = JSON.parse(localStorage.getItem("todoSection"));
 
     if (todoList || inCompleteTodoList || doneTodoList || todoSection) {
-      console.log("todoList", todoList);
       dispatch(updateTodo(todoList));
       dispatch(updateDoneTodoList());
       dispatch(updateTodoSection(todoSection));
-      console.log("called dispatch");
     }
   }
 

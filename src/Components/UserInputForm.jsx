@@ -41,13 +41,11 @@ const UserInputForm = () => {
         isComplete: false,
         isDropdownOpen: false,
       };
-      console.log("form btn:", formBtn);
       if (formBtn === "Add Task") {
         dispatch(addNewTodo([...todoList, newTodo]));
       } else {
         const updatedArray = editTodo();
 
-        console.log("New array:", updatedArray);
         dispatch(updateTodo(updatedArray));
         dispatch(updateDoneTodoList());
         setFormBtn("Add Task");
@@ -76,7 +74,6 @@ const UserInputForm = () => {
     let updatedTodoList = todoList.filter(
       (todo) => todo.id !== selectedTodo.id
     );
-    console.log("updated todo:", updatedTodoList);
     dispatch(updateTodo(updatedTodoList));
     localStorage.setItem("todoList", JSON.stringify(updatedTodoList));
   };
