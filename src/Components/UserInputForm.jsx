@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import InputTitle from "./InputTitle";
-import { addNewTodo, updateDoneTodoList, updateTodo } from "../Redux/todos";
+import {
+  addNewTodo,
+  addSelectedTodo,
+  updateDoneTodoList,
+  updateTodo,
+} from "../Redux/todos";
 
 const UserInputForm = () => {
   const todoList = useSelector((state) => state.todos?.todoList);
@@ -37,10 +42,22 @@ const UserInputForm = () => {
         dispatch(updateTodo(newArr));
         dispatch(updateDoneTodoList());
         setFormBtn("Add Task");
+        dispatch(addSelectedTodo(""));
       }
       setTitle("");
       setDescription("");
     }
+  };
+
+  const handleUncheckCancelTodo = () => {
+    let newArr = todoList.map((todo) =>
+      todo.id === selectedTodo.id ? { ...todo, isComplete: false } : todo
+    );
+    dispatch(updateTodo(newArr));
+    localStorage.setItem("todoList", JSON.stringify(newArr));
+    dispatch(addSelectedTodo(""));
+    setTitle("");
+    setDescription("");
   };
 
   useEffect(() => {
@@ -83,6 +100,14 @@ const UserInputForm = () => {
           </div>
         </label>
 
+        {selectedTodo && (
+          <button
+            className="cancel-uncheck-todo-btn"
+            onClick={handleUncheckCancelTodo}
+          >
+            Cancel / UnCheck
+          </button>
+        )}
         <button className="add-task-btn" type="submit">
           {formBtn}
         </button>

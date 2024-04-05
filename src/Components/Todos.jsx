@@ -3,25 +3,26 @@ import { useDispatch, useSelector } from "react-redux";
 import { addSelectedTodo, updateTodo } from "../Redux/todos";
 
 const Todos = ({ todos }) => {
+  const todoList = useSelector((state) => state.todos?.todoList);
   const dispatch = useDispatch();
 
   const handleDropDown = (id) => {
-    let newArr = todos?.map((todo) =>
+    let newArr = todoList?.map((todo) =>
       todo?.id === id ? { ...todo, isDropdownOpen: !todo.isDropdownOpen } : todo
     );
     dispatch(updateTodo(newArr));
   };
 
   const handleSelectedTodo = (e, todo) => {
-    const { id } = todo;
-    const { checked } = e.target;
-    // let newArr = todos.map((todo) =>
-    //   todo?.id === id ? { ...todo, isComplete: checked } : todo
-    // );
-    // dispatch(updateTodo([...todos, todo]));
     dispatch(addSelectedTodo(todo));
   };
 
+  if (todos?.length > 0 && todoList?.length > 0) {
+    localStorage.setItem("todoList", JSON.stringify(todoList));
+
+  } else {
+    return;
+  }
 
   return (
     <>

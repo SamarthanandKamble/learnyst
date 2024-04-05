@@ -6,7 +6,6 @@ import {
   updateTodo,
   updateTodoSection,
 } from "../Redux/todos";
-import AllTodo from "./Todos";
 import TodoSection from "./TodoSection";
 
 const todoSectionTitle = ["All", "Done", "To Do"];
@@ -14,6 +13,7 @@ const todoSectionTitle = ["All", "Done", "To Do"];
 const TodoContainer = () => {
   const selectedTodoSection = useSelector((state) => state.todos?.todoSection);
   const dispatch = useDispatch();
+
   useEffect(() => {
     const todoList = JSON.parse(localStorage.getItem("todoList"));
     const inCompleteTodoList = JSON.parse(

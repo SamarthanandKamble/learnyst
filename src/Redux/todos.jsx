@@ -3,7 +3,52 @@ import { createSlice } from "@reduxjs/toolkit";
 export const todos = createSlice({
   name: "todos",
   initialState: {
-    todoList: [],
+    todoList: [
+      {
+        id: 1,
+        title: "Complete project proposal for upcoming client meeting",
+        description: "test description",
+        isComplete: false,
+        isDropdownOpen: false,
+      },
+      {
+        id: 2,
+        title: "Review and respond to emails in inbox.",
+        description: "test description",
+        isComplete: false,
+        isDropdownOpen: false,
+      },
+      {
+        id: 3,
+        title:
+          "Schedule meeting with team members to discuss project timeline.",
+        description: "test description",
+        isComplete: false,
+        isDropdownOpen: false,
+      },
+      {
+        id: 5,
+        title: "Learn more things to upskill.",
+        description: "test description",
+        isComplete: true,
+        isDropdownOpen: false,
+      },
+      {
+        id: 6,
+        title: "Make Presentation for tomorrow",
+        description:
+          "Presentation regarding future of Artificial Intelligence.",
+        isComplete: false,
+        isDropdownOpen: true,
+      },
+      {
+        id: 7,
+        title: "Update project documentation with latest changes and progress.",
+        description: "test description",
+        isComplete: false,
+        isDropdownOpen: false,
+      },
+    ],
     todoSection: "All",
     doneTodoList: [],
     selectedTodo: null,
@@ -26,7 +71,7 @@ export const todos = createSlice({
     updateTodo: (state, action) => {
       const updatedTodoList = action.payload;
       state.todoList = updatedTodoList;
-      state.inCompleteTodoList = updatedTodoList.filter(
+      state.inCompleteTodoList = updatedTodoList?.filter(
         (todo) => !todo.isComplete
       );
       localStorage.setItem(
@@ -42,7 +87,7 @@ export const todos = createSlice({
       localStorage.setItem("todoSection", JSON.stringify(state.todoSection));
     },
     updateDoneTodoList: (state) => {
-      state.doneTodoList = state.todoList.filter((todo) => todo.isComplete);
+      state.doneTodoList = state.todoList?.filter((todo) => todo.isComplete);
       localStorage.setItem("todoList", JSON.stringify(state.todoList));
       localStorage.setItem("doneTodoList", JSON.stringify(state.doneTodoList));
     },

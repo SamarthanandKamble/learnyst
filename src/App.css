@@ -95,6 +95,25 @@ label:last-of-type .input-fields {
   line-height: 22px;
 }
 
+.cancel-uncheck-todo-btn{
+   position: absolute;
+  width: 427px;
+  height: 47px;
+  top: 580px;
+  left: 48px;
+  padding: 10px;
+  gap: 10px;
+  border-radius: 4px;
+  background-color: #09418f;
+  font-size: 14px;
+  color: #ffffff;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-weight: 600;
+  line-height: 22px;
+}
+
 .todo-container {
   width: 745px;
   position: relative;
