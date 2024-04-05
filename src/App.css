@@ -72,6 +72,7 @@ label:last-of-type .input-fields {
   font-size: 16px;
   margin: 12px 16px;
   font-family: "Poppins", sans-serif;
+  text-align: left;
 }
 .input::placeholder {
   color: #b3b3b3;
@@ -362,7 +363,7 @@ input[type="checkbox"]:checked::before {
   .input {
     font-family: "Poppins", sans-serif;
     font-size: 25px;
-    text-align: center;
+    text-align: left;
     width: auto;
   }
   label:last-of-type .input-fields {
@@ -479,6 +480,7 @@ input[type="checkbox"]:checked::before {
   }
 
   .input {
+    text-align: left;
     margin: 12px 5px;
   }
 
@@ -505,6 +507,7 @@ input[type="checkbox"]:checked::before {
     width: 320px;
   }
   .input {
+    text-align: left;
     width: auto;
   }
   label:last-of-type .input-fields {
