@@ -16,8 +16,23 @@ const UserInputForm = () => {
   const [formBtn, setFormBtn] = useState("Add Task");
   const [description, setDescription] = useState("");
 
+  const editTodo = () => {
+    let newArr = todoList.map((todo) =>
+      todo.id === selectedTodo.id
+        ? {
+            ...todo,
+            title,
+            description,
+            isComplete: true,
+          }
+        : todo
+    );
+    return newArr;
+  };
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
+
     if (title.length > 0 && description.length > 0) {
       const newTodo = {
         id: todoList?.length > 0 ? todoList[todoList.length - 1].id + 1 : 1,
@@ -26,23 +41,18 @@ const UserInputForm = () => {
         isComplete: false,
         isDropdownOpen: false,
       };
+      console.log("form btn:", formBtn);
       if (formBtn === "Add Task") {
         dispatch(addNewTodo([...todoList, newTodo]));
       } else {
-        let newArr = todoList.map((todo) =>
-          todo.id === selectedTodo.id
-            ? {
-                ...todo,
-                title,
-                description,
-                isComplete: true,
-              }
-            : todo
-        );
-        dispatch(updateTodo(newArr));
+        const updatedArray = editTodo();
+
+        console.log("New array:", updatedArray);
+        dispatch(updateTodo(updatedArray));
         dispatch(updateDoneTodoList());
         setFormBtn("Add Task");
         dispatch(addSelectedTodo(""));
+        localStorage.setItem("todoList", JSON.stringify(updatedArray));
       }
       setTitle("");
       setDescription("");
@@ -50,7 +60,8 @@ const UserInputForm = () => {
   };
 
   const handleUncheckCancelTodo = () => {
-    let newArr = todoList.map((todo) =>
+    const updatedTodo = editTodo();
+    let newArr = updatedTodo.map((todo) =>
       todo.id === selectedTodo.id ? { ...todo, isComplete: false } : todo
     );
     dispatch(updateTodo(newArr));
@@ -58,6 +69,7 @@ const UserInputForm = () => {
     dispatch(addSelectedTodo(""));
     setTitle("");
     setDescription("");
+    setFormBtn("Add Task");
   };
 
   const handleDeleteTodo = () => {
@@ -66,13 +78,14 @@ const UserInputForm = () => {
     );
     console.log("updated todo:", updatedTodoList);
     dispatch(updateTodo(updatedTodoList));
+    localStorage.setItem("todoList", JSON.stringify(updatedTodoList));
   };
 
   useEffect(() => {
     if (selectedTodo) {
       setTitle(selectedTodo.title);
       setDescription(selectedTodo.description);
-      setFormBtn("Done");
+      setFormBtn("Mark Done");
     }
   }, [selectedTodo]);
   return (
@@ -114,10 +127,10 @@ const UserInputForm = () => {
               className="cancel-uncheck-todo-btn"
               onClick={handleUncheckCancelTodo}
             >
-              Cancel / UnCheck
+              Cancel / Uncheck task
             </button>
             <button className="delete-todo-btn" onClick={handleDeleteTodo}>
-              Delete Todo
+              Delete task
             </button>
           </div>
         )}

@@ -3,60 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const todos = createSlice({
   name: "todos",
   initialState: {
-    todoList: [
-      {
-        id: 1,
-        title: "Complete project proposal for upcoming client meeting",
-        description: "test description",
-        isComplete: false,
-        isDropdownOpen: false,
-      },
-      {
-        id: 2,
-        title: "Review and respond to emails in inbox.",
-        description: "test description",
-        isComplete: false,
-        isDropdownOpen: false,
-      },
-      {
-        id: 3,
-        title:
-          "Schedule meeting with team members to discuss project timeline.",
-        description: "test description",
-        isComplete: false,
-        isDropdownOpen: false,
-      },
-      {
-        id: 4,
-        title: "Research new technology or tool to improve workflow efficiency",
-        description: "test description",
-        isComplete: false,
-        isDropdownOpen: false,
-      },
-
-      {
-        id: 5,
-        title: "Learn more things to upskill.",
-        description: "test description",
-        isComplete: true,
-        isDropdownOpen: false,
-      },
-      {
-        id: 6,
-        title: "Make Presentation for tomorrow",
-        description:
-          "Presentation regarding future of Artificial Intelligence.",
-        isComplete: false,
-        isDropdownOpen: true,
-      },
-      {
-        id: 7,
-        title: "Update project documentation with latest changes and progress.",
-        description: "test description",
-        isComplete: true,
-        isDropdownOpen: false,
-      },
-    ],
+    todoList: [],
     todoSection: "All",
     doneTodoList: [],
     selectedTodo: null,
